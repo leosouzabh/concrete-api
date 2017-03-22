@@ -15,6 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -55,13 +56,17 @@ public class UsuariosRestControllerTest {
 	
 	@Test
 	public void cadastraUsuarioComValoresValidosRetorna201() throws Exception {
-		when(usuarioService.insert(any(Usuario.class))).thenAnswer((InvocationOnMock i) -> {
-			return i.getArgumentAt(0, Usuario.class)
-					.setId("uuid123123")
-					.setToken("token123token")
-					.setCreated(new Date())
-					.setModified(new Date())
-					.setUltimoLogin(new Date());
+		when(usuarioService.insert(any(Usuario.class))).thenAnswer( new Answer<Usuario>() {
+			@Override
+			public Usuario answer(InvocationOnMock i) throws Throwable {
+				return i.getArgumentAt(0, Usuario.class)
+						.setId("uuid123123")
+						.setToken("token123token")
+						.setCreated(new Date())
+						.setModified(new Date())
+						.setUltimoLogin(new Date());
+				
+			}
 		});
 		
 		SalvarUsuarioResource usuarioParaSalvar = new SalvarUsuarioResource(); 

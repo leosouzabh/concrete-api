@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import static org.assertj.core.api.Assertions.*;
@@ -40,13 +41,16 @@ public class LoginServiceTest {
 	@Test
 	public void testaCadastroComSucesso() throws ApiException {
 		
-		when(usuarioRepository.save(any(Usuario.class))).thenAnswer((InvocationOnMock i) -> {
-			return i.getArgumentAt(0, Usuario.class)
+		when(usuarioRepository.save(any(Usuario.class))).thenAnswer(new Answer<Usuario>() {
+			@Override
+			public Usuario answer(InvocationOnMock i) throws Throwable {
+				return i.getArgumentAt(0, Usuario.class)
 					.setId("uuid123123")
 					.setToken("token123token")
 					.setCreated(new Date())
 					.setModified(new Date())
 					.setUltimoLogin(new Date());
+			}
 		});
 		
 		when(jwtUtil.generateToken(Mockito.any(Usuario.class))).thenReturn("123");

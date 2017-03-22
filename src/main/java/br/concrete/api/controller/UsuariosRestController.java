@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -73,7 +74,7 @@ public class UsuariosRestController {
 	
 
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<Iterable<Usuario>> list(Pageable pageable) {
+	public ResponseEntity<Page<Usuario>> list(Pageable pageable) {
 		log.debug("GET para pesquisar usuários size {}, page {}, sort {}", pageable.getPageSize(), pageable.getPageNumber(), pageable.getSort()); //?size=2&page=30&sort=login,desc
 		return ResponseEntity.ok(usuarioService.pesquisa(new Usuario(), pageable));
 	}
