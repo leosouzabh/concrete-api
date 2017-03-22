@@ -13,7 +13,7 @@ Crie uma aplicação que exponha uma API RESTful de criação de usuários e log
 
 ### Chamadas da API
 
-###1) Criação de Usuário
+### 1) Criação de Usuário
 Url: `http://localhost:8080/concrete-api/api/usuarios`
 Method: `POST`
 Data: 
@@ -68,7 +68,7 @@ Json Retorno:
 }
 ```
 
-###1) Listagem de Usuário
+### 2) Listagem de Usuário
 Url: `http://localhost:8080/concrete-api/api/usuarios`
 Method: `GET`
 Json Retorno:
@@ -100,7 +100,7 @@ Json Retorno:
 }
 ```
 
-###3) Login de Usuário
+### 3) Login de Usuário
 Url: `http://localhost:8080/concrete-api/api/usuarios`
 Method: `POST`
 Data: 
@@ -155,7 +155,7 @@ Json retorno:
 }
 ```
 
-###4) Perfil de Usuário
+### 4) Perfil de Usuário
 Url: `http://localhost:8080/concrete-api/api/perfil/[UUID DO USUARIO]`
 Method: `GET`
 Header: (Authorization: Bearer **[TOKEN DO USUÁRIO]**)
