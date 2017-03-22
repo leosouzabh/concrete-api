@@ -17,6 +17,7 @@ import br.concrete.api.exception.SenhaInvalidaException;
 import br.concrete.api.exception.UsuarioNaoEncontradoException;
 import br.concrete.api.model.Usuario;
 import br.concrete.api.service.LoginService;
+import br.concrete.api.util.ResourceUtils;
 
 @RestController
 @RequestMapping("/api/login")
@@ -35,7 +36,7 @@ public class LoginRestController {
 		try {
 			
 			Usuario usuario = loginService.doLogin(login);		
-			return ResponseEntity.ok(usuario);
+			return ResponseEntity.ok( ResourceUtils.toUsuarioResource(usuario));
 			
 		} catch (UsuarioNaoEncontradoException e) {
 			return ResponseEntity.badRequest().body( new ErroResource("Usuário e/ou senha inválidos") );

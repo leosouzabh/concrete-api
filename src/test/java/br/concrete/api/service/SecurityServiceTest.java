@@ -33,30 +33,30 @@ public class SecurityServiceTest {
 	@Test(expected=NaoAutorizadoException.class)
 	public void testaValidacaoSemToken() throws ApiException {
 		SecurityService securityService = new SecurityService(usuarioRepository, jwtUtil);
-		securityService.checkToken(null);
+		securityService.checkToken(null, null);
 	}
 	
 	@Test(expected=NaoAutorizadoException.class)
 	public void testaValidacaoComTokenInexistente() throws ApiException {
-		when(usuarioRepository.findByToken(any(String.class))).thenReturn(null);
+		when(usuarioRepository.findById(any(String.class))).thenReturn(null);
 		SecurityService securityService = new SecurityService(usuarioRepository, jwtUtil);
-		securityService.checkToken("Bearer token");
+		securityService.checkToken("Bearer token", "");
 	}
 	
 	@Test(expected=SessaoInvalidaException.class)
 	public void testaValidacaoComTokenExpirado() throws ApiException {
-		when(usuarioRepository.findByToken(any(String.class))).thenThrow(SessaoInvalidaException.class);
+		when(usuarioRepository.findById(any(String.class))).thenThrow(SessaoInvalidaException.class);
 		SecurityService securityService = new SecurityService(usuarioRepository, jwtUtil);
-		securityService.checkToken("Bearer token");
+		securityService.checkToken("Bearer token", "");
 	}
 	
 	@Test
 	public void testaValidacaoComTokenValido() throws ApiException {
-		when(usuarioRepository.findByToken(any(String.class))).thenReturn(new Usuario());
+		when(usuarioRepository.findById(any(String.class))).thenReturn(new Usuario());
 		when(jwtUtil.parseToken(any(String.class))).thenReturn(new Usuario().setId("uuid"));
 		
 		SecurityService securityService = new SecurityService(usuarioRepository, jwtUtil);
-		securityService.checkToken("Bearer tokenvalido");
+		securityService.checkToken("Bearer tokenvalido", "uuidvalido");
 	}
 	
 }

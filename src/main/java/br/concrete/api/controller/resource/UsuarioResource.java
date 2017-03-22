@@ -3,12 +3,13 @@ package br.concrete.api.controller.resource;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.hateoas.ResourceSupport;
+
 public class UsuarioResource  {
 
 	private String id;
 	private String name;
 	private String email;
-	private String password;
 	private String token;
 	private Date created;
 	private Date modified;
@@ -29,13 +30,6 @@ public class UsuarioResource  {
 	public UsuarioResource setEmail(String email) {
 		this.email = email;
 		return this;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public UsuarioResource setPassword(String password) {
-		this.password = password;
-		return this;		
 	}
 	public Date getCreated() {
 		return created;

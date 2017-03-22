@@ -37,8 +37,12 @@ public class SecurityTokenFilter  extends GenericFilterBean {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		
+		String uuid = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length()).replace("/api/perfil/", "");
+		
+		
 		try {
-			securityService.checkToken(httpRequest.getHeader("Authorization"));
+			securityService.checkToken(httpRequest.getHeader("Authorization"), uuid);
+			chain.doFilter(request, response);
 			
 		} catch (NaoAutorizadoException e1){
 			setResponse(httpResponse, "Não autorizado");
@@ -47,7 +51,6 @@ public class SecurityTokenFilter  extends GenericFilterBean {
 			setResponse(httpResponse, "Sessão inválida");
 		}
 		
-		 chain.doFilter(request, response);
 		
 	}
 

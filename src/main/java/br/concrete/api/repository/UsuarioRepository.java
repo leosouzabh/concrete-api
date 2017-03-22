@@ -8,6 +8,6 @@ import br.concrete.api.model.Usuario;
 public interface UsuarioRepository extends PagingAndSortingRepository<Usuario, Long>, QueryByExampleExecutor<Usuario> {
 
 	Usuario findByEmail(String email);
-	Usuario findByToken(String token);
+	Usuario findById(String id);
 	
 }

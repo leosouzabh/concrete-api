@@ -23,7 +23,7 @@ public class SecurityService {
 
 
 
-	public void checkToken(String token) throws NaoAutorizadoException, SessaoInvalidaException {
+	public void checkToken(String token, String uuid) throws NaoAutorizadoException, SessaoInvalidaException {
 		
 		if ( StringUtils.isEmpty(token) ){
 			throw new NaoAutorizadoException();
@@ -32,8 +32,8 @@ public class SecurityService {
 			token = token.replace("Bearer ", "");
 			
 			try {
-				Usuario usuario = usuarioRepository.findByToken(token);
-				if ( usuario == null ){
+				Usuario usuario = usuarioRepository.findById(uuid);
+				if ( usuario == null || !usuario.getToken().equals(token)){
 					throw new NaoAutorizadoException();		
 				}			
 				jwtUtil.parseToken(token);

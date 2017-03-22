@@ -9,22 +9,21 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
-public class SpringBootModeloApplication extends SpringBootServletInitializer  {
+public class ConcreteApiApplication extends SpringBootServletInitializer  {
 
-	private static final Logger log = LoggerFactory.getLogger(SpringBootModeloApplication.class);
+	private static final Logger log = LoggerFactory.getLogger(ConcreteApiApplication.class);
 
 	
 	
 	public static void main(String[] args) {
-		ApplicationContext ctx = SpringApplication.run(SpringBootModeloApplication.class);
+		ApplicationContext ctx = SpringApplication.run(ConcreteApiApplication.class);
 		
         log.info("Contexto: {}", ctx.getApplicationName());
-        log.info("H2: {}/{}", ctx.getApplicationName(), "h2-console");
 	}
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(SpringBootModeloApplication.class);
+		return application.sources(ConcreteApiApplication.class);
 	}
 	
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-public class SalvarUsuarioResource {
+public class SalvarUsuarioResource  {
 
 	@NotBlank
 	private String name;

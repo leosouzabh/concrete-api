@@ -6,10 +6,12 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import br.concrete.api.config.auth.JwtUtil;
 import br.concrete.api.config.auth.SecurityTokenFilter;
@@ -28,8 +30,16 @@ public class ApiConfig {
 	}
 
 	@Bean
-	public FilterRegistrationBean someFilterRegistration() {
+	public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
+		MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
+		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+		jsonConverter.setObjectMapper(objectMapper);
+		return jsonConverter;
+	}
 
+	@Bean
+	public FilterRegistrationBean someFilterRegistration() {
 	    FilterRegistrationBean registration = new FilterRegistrationBean();
 	    registration.setFilter(securityTokenFilter());
 	    registration.addUrlPatterns("/api/perfil/*");
