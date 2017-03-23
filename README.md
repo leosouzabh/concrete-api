@@ -11,16 +11,18 @@ Crie uma aplicação que exponha uma API RESTful de criação de usuários e log
 * Comando para executar a suide de testes: `mvn test`
 * URL: `http://localhost:8080/concrete-api`
 
+A api esta publicada na URL http://concreteapi-leosouza.rhcloud.com/concrete-api/api
+
 ### Chamadas da API
 
 ### 1) Criação de Usuário
-Url: `http://localhost:8080/concrete-api/api/usuarios`
+Url: `http://concreteapi-leosouza.rhcloud.com/concrete-api/api/usuarios`
 Method: `POST`
 Data: 
 ```
 {
     "name": "Leo",
-    "email": "leosouzabh@gmail.com",
+    "email": "leosouzabh2@gmail.com",
     "password": "leo",
     "phones": [
         {
@@ -69,7 +71,7 @@ Json Retorno:
 ```
 
 ### 2) Listagem de Usuário
-Url: `http://localhost:8080/concrete-api/api/usuarios`
+Url: `http://concreteapi-leosouza.rhcloud.com/concrete-api/api/usuarios`
 Method: `GET`
 Json Retorno:
 ```
@@ -78,7 +80,7 @@ Json Retorno:
     {
       "id": "297e800e5af7aaf0015af7aaf9f10000",
       "name": "Leo",
-      "email": "leosouzabh@gmail.com",
+      "email": "leosouzabh2@gmail.com",
       "token": "eyJhbGciOiJIUzUxMiJ9.[...]",
       "password": "$2a$10$d60r1E0j2xmPPe9HcN0kgeQ2g8EQ1uiOzV6yPMLh3ttbeYl5zVq56",
       "phones": [],
@@ -101,12 +103,12 @@ Json Retorno:
 ```
 
 ### 3) Login de Usuário
-Url: `http://localhost:8080/concrete-api/api/usuarios`
+Url: `http://concreteapi-leosouza.rhcloud.com/concrete-api/api/usuarios`
 Method: `POST`
 Data: 
 ```
 {
-    "email": "leosouzabh@gmail.com",
+    "email": "leosouzabh2@gmail.com",
     "password": "leo"
 }
 ```
@@ -130,8 +132,7 @@ Json retorno:
 		},
 		{
 			"ddd": "31",
-			"number": "987`
-54321"
+			"number": "98754321"
 		}
 	]
 }
@@ -156,7 +157,7 @@ Json retorno:
 ```
 
 ### 4) Perfil de Usuário
-Url: `http://localhost:8080/concrete-api/api/perfil/[UUID DO USUARIO]`
+Url: `http://concreteapi-leosouza.rhcloud.com/concrete-api/api/perfil/[UUID DO USUARIO]`
 Method: `GET`
 Header: (Authorization: Bearer **[TOKEN DO USUÁRIO]**)
 

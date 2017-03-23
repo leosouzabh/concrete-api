@@ -52,7 +52,7 @@ public class SecurityServiceTest {
 	
 	@Test
 	public void testaValidacaoComTokenValido() throws ApiException {
-		when(usuarioRepository.findById(any(String.class))).thenReturn(new Usuario());
+		when(usuarioRepository.findById(any(String.class))).thenReturn(new Usuario().setToken("tokenvalido"));
 		when(jwtUtil.parseToken(any(String.class))).thenReturn(new Usuario().setId("uuid"));
 		
 		SecurityService securityService = new SecurityService(usuarioRepository, jwtUtil);
